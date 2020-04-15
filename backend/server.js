@@ -16,13 +16,13 @@ mongoose.connect(config.DB, {useNewUrlParser: true}).then(
     ()=> {console.log('Database is connected')},
     err => {console.log('cannot connect to the database' + err)}
 );
-/*
-const exercisesRouter = require('./routes/exercises');
-const usersRouter = require('./routes/users');
 
-app.use('/exercises', exercisesRouter);
-app.use('/users', usersRouter);
-*/
+const discountsRouter = require('./routes/discounts');
+const productsRouter = require('./routes/products');
+
+app.use('/discounts', discountsRouter);
+app.use('/products', productsRouter);
+
 app.listen(PORT,function () {
     console.log('Server is running on port : ',PORT);
 });
