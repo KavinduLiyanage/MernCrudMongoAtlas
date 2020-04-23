@@ -25,6 +25,31 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+    Discount.findById(req.params.id)
+        .then(discount => res.json(discount))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
+router.route('/:id').delete((req, res) => {
+    Discount.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Discount deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/update/:id').post((req, res) => {
+    Discount.findById(req.params.id)
+        .then(discount => {
+            discount.productName = req.body.productName;
+            discount.description = req.body.description;
+            discount.duration = Number(req.body.duration);
+            discount.date = Date.parse(req.body.date);
+
+            discount.save()
+                .then(() => res.json('Discount updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;
