@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -24,10 +25,18 @@ export default class CreateDiscountComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            products: ['test user'],
-            productName: 'test user'
-        })
+        axios.get('http://localhost:4000/products/')
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        products: response.data.map(product => product.productName),
+                        productName: response.data[0].productName
+                    })
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     onChangeProductName(e) {
@@ -66,7 +75,8 @@ export default class CreateDiscountComponent extends Component {
 
         console.log(discount);
 
-
+        axios.post('http://localhost:4000/discounts/add', discount)
+            .then(res => console.log(res.data));
 
         window.location = '/';
     }
@@ -78,7 +88,7 @@ export default class CreateDiscountComponent extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Product Name: </label>
-                        <select ref="userInput"
+                        <select ref="productInput"
                                 required
                                 className="form-control"
                                 value={this.state.productName}

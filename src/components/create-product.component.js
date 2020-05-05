@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class CreateProductComponent extends Component {
 
@@ -28,6 +29,8 @@ class CreateProductComponent extends Component {
 
         console.log(product);
 
+        axios.post('http://localhost:4000/products/add', product)
+            .then(res => console.log(res.data));
 
         this.setState({
             productName: ''
