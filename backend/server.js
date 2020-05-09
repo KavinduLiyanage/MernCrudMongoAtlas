@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-require('dotenv').config();
+
 
 const app = express();
-//const port = process.env.PORT || 5000;
+
 const PORT = 4000;
 const config = require('./database/DB.js');
 app.use(cors());

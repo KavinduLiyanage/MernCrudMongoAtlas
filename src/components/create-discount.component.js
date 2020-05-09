@@ -78,7 +78,8 @@ export default class CreateDiscountComponent extends Component {
         axios.post('http://localhost:4000/discounts/add', discount)
             .then(res => console.log(res.data));
 
-        window.location = '/';
+
+        this.props.history.push('/');
     }
 
     render() {

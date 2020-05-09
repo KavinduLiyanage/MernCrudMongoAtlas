@@ -10,6 +10,12 @@ const productSchema = new Schema({
         trim: true,
         minlength: 3
     },
+    productDes : {
+        type : String
+    },
+    productPrice : {
+        type : Number
+    }
 }, {
     timestamps: true,
 });
