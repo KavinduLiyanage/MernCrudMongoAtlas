@@ -7,6 +7,7 @@ import DiscountsList from "./components/discounts-list.component";
 import EditDiscount from "./components/edit-discounts.component";
 import CreateDiscount from "./components/create-discount.component";
 import CreateProduct from "./components/create-product.component";
+import UploadProductPage from "./components/UploadProduct/UploadProductPage";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path="/" exact component={DiscountsList} />
           <Route path="/edit/:id" component={EditDiscount} />
           <Route path="/create" component={CreateDiscount} />
-          <Route path="/product" component={CreateProduct} />
+          <Route exact path="/product" component={CreateProduct} />
+          <Route path="/product/upload" component={UploadProductPage} />
         </div>
       </Router>
   );
