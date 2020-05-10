@@ -9,7 +9,7 @@ const Discount = props => (
         <td>{props.discount.duration}</td>
         <td>{props.discount.date.substring(0,10)}</td>
         <td>
-            <Link to={"/edit/"+props.discount._id}>edit</Link> | <a href="#" onClick={() => { props.deleteDiscount(props.discount._id) }}>delete</a>
+            <Link to={"/edit/"+props.discount._id}>edit</Link>
         </td>
     </tr>
 )
