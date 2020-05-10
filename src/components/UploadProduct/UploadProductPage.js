@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
+import FileUpload from '../UploadProduct/FileUpload';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -37,59 +38,60 @@ function UploadProductPage() {
         setContinentValue(event.currentTarget.value)
     }
 
-        return (
-            <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <Title level={2}> Upload Travel Product</Title>
-                </div>
-
-
-                <Form onSubmit >
-
-                    {/* DropZone */}
-
-
-                    <br />
-                    <br />
-                    <label>Title</label>
-                    <Input
-                        onChange={onTitleChange}
-                        value={TitleValue}
-                    />
-                    <br />
-                    <br />
-                    <label>Description</label>
-                    <TextArea
-                        onChange={onDescriptionChange}
-                        value={DescriptionValue}
-                    />
-                    <br />
-                    <br />
-                    <label>Price($)</label>
-                    <Input
-                        onChange={onPriceChange}
-                        value={PriceValue}
-                        type="number"
-                    />
-                    <br /><br />
-                    <select onChange={onContinentsSelectChange} value={ContinentValue}>
-                        {Continents.map(item => (
-                            <option key={item.key} value={item.key}>{item.value} </option>
-                        ))}
-                    </select>
-                    <br />
-                    <br />
-
-                    <Button
-                        onClick
-                    >
-                        Submit
-                    </Button>
-
-                </Form>
-
+    return (
+        <div style={{maxWidth: '700px', margin: '2rem auto'}}>
+            <div style={{textAlign: 'center', marginBottom: '2rem'}}>
+                <Title level={2}> Upload Travel Product</Title>
             </div>
-        );
+
+
+            <Form onSubmit>
+
+                {/* DropZone */}
+                <FileUpload refreshFunction/>
+
+
+                <br/>
+                <br/>
+                <label>Title</label>
+                <Input
+                    onChange={onTitleChange}
+                    value={TitleValue}
+                />
+                <br/>
+                <br/>
+                <label>Description</label>
+                <TextArea
+                    onChange={onDescriptionChange}
+                    value={DescriptionValue}
+                />
+                <br/>
+                <br/>
+                <label>Price($)</label>
+                <Input
+                    onChange={onPriceChange}
+                    value={PriceValue}
+                    type="number"
+                />
+                <br/><br/>
+                <select onChange={onContinentsSelectChange} value={ContinentValue}>
+                    {Continents.map(item => (
+                        <option key={item.key} value={item.key}>{item.value} </option>
+                    ))}
+                </select>
+                <br/>
+                <br/>
+
+                <Button
+                    onClick
+                >
+                    Submit
+                </Button>
+
+            </Form>
+
+        </div>
+    );
 
 }
 
